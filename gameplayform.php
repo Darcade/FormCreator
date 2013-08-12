@@ -41,17 +41,29 @@ if (!class_exists("GameplayFormClass")) {
 					break;
 			}
 		}
-
+//FIXME: add message
 		public function datenAbspeichern() {
-			var_dump($_POST);
+			//var_dump($_POST);
+			global $wpdb, $plugintablename;
+			$dbname = $wpdb -> prefix . $plugintablename;
+			$wpdb->insert($dbname, $_POST);
+			//$wpdb->insert($dbname, array( 'game'=>'test1'));
+			echo'<br>speichere';
+			echo $dbname;
+			
+			
 		}
 
 		public function admininterface() {
+			global $wpdb, $plugintablename;
+			$dbname = $wpdb -> prefix . $plugintablename;
+			$dboutput = $wpdb->get_results( 'SELECT * FROM '.$dbname, ARRAY_A);
 			echo '<div class="wrap">
 				<div>
 					<h1>Gameplayform</h1>
-					<p>Hier kommt später eine Tabelle hin :)</p>
-				</div>
+					<p>DATABASE:';
+			var_dump($dboutput);
+			echo '</p></div>
 			</div><br>';
 		}
 
@@ -99,7 +111,7 @@ function addadmininterface() {
 	add_menu_page('Gameplayform', 'Gameplayform', manage_options, __FILE__, array(&$runvariable, 'admininterface'));
 }
 
-
+//$runvariable->installgpplugin();
 add_shortcode('gameplayform', array('GameplayFormClass', 'doFrontendController'));
 add_action('admin_menu', 'addadmininterface');
 ?>

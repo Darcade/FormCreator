@@ -2,7 +2,7 @@
 <br>
 <form method="post">
 	<p><strong>Um welches game handelt es sich?</strong> <span style="color: #ff0000">*</span><br>
-		<select id="entry_3" name="entry.3.single">
+		<select id="game" name="game">
 			<option value="Call of Duty: Black Ops 2">Call of Duty: Black Ops 2</option> 
 			<option value="Call of Duty: Modern Warfare 3">Call of Duty: Modern Warfare 3</option> 
 			<option value="Call of Duty: Black Ops">Call of Duty: Black Ops</option> 
@@ -17,13 +17,13 @@
 	<p>
 		<strong>Ist das Gameplay in HD, also 1280x720 oder 1920x1080 gerendert?</strong> <span style="color: #ff0000">*</span><br>
 		Leider können NUR GAMEPLAYS in HD verwendet werden!<br><br>
-		<input type="radio" value="ja_hd" name="askifhd"> Ja <br><input type="radio" value="nein_hd" name="askifhd"> Nein
+		<input type="radio" value="ja_hd" name="isithd"> Ja <br><input type="radio" value="nein_hd" name="isithd"> Nein
 	</p>
 	<br>
 	<p>
 		<strong>Wie lang dauert das Gameplay?</strong> <span style="color: #ff0000">*</span><br>
 		Bitte Minuten und Sekunden angeben<br><br>
-		<input type="text" name="gameplaytime" size="5"><br>
+		<input type="text" name="laenge" size="5"><br>
 	</p>
 	<p>
 		<strong>Beschreibe bitte das Spiel und den Spielablauf!</strong> <span style="color: #ff0000">*</span><br>
@@ -46,29 +46,29 @@
 	<p>
 		<strong>Wie lautet der Downloadlink des Gameplays?</strong> <span style="color: #ff0000">*</span><br>
 		Ladet das Gameplay entweder auf <a href="www.gamefront.com/files/upload">www.gamefront.com/files/upload</a> oder <a href="https://www.rapidshare.com/">https://www.rapidshare.com/</a> hoch. Bitte nicht ungelistet auf YouTube (Qualitätsverlust)<br><br>
-		<input type="text" name="videodllink" size="70">
+		<input type="text" name="dllink" size="70">
 	</p>
 	<br><br>
 	<p>
 		<strong>Wie willst du im Gameplay vorkommen?</strong> <span style="color: #ff0000">*</span><br><br>
-		<input type="radio" value="audiovorstellung" name="vorkommen"> In einer 20-30 sekündigen Audioclip-Vorstellung. <br><input type="radio" value="erwaehnen" name="vorkommen"> Erw&auml;hnen reicht :)
+		<input type="radio" value="audiovorstellung" name="audiovorkommen"> In einer 20-30 sekündigen Audioclip-Vorstellung. <br><input type="radio" value="erwaehnen" name="audiovorkommen"> Erw&auml;hnen reicht :)
 	</p>
 	<br><br>
 	<p>
 		<strong>Wie lautet der Downloadlink für die Audiodatei?</strong> <span style="color: #ff0000">*</span><br>
 		Bitte nur ausfüllen, wenn du in der 20-30 sekündigen Audiovorstellung vorkommen willst.<br><br>
-		<input type="text" name="audiodllink" size="70">
+		<input type="text" name="dllinkaudio" size="70">
 	</p>
 	<br><br>
 	<p>
 		<strong>Sonstige Informationen ;)</strong><br><br>
-		<textarea name="other" style="width: 650px; height: 206px;"></textarea>
+		<textarea name="sonstiges" style="width: 650px; height: 206px;"></textarea>
 	</p>
 	<br><br>
 	<p>
 		<strong>Wie lautet dein Youtube Kanal?</strong><span style="color: #ff0000">*</span><br>
 		Für die Verlinkung in der Videobeschreibung und die Kontaktaufnahme für den 20-30 Sekunden Audioclip. <br><br>
-		<input name="ytchannel" type="text" size="25">
+		<input name="kanal" type="text" size="25">
 	</p>
 	<br><br>
 	<input type="submit" value="Absenden">
