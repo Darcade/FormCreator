@@ -41,30 +41,66 @@ if (!class_exists("GameplayFormClass")) {
 					break;
 			}
 		}
-//FIXME: add message
+
+		//FIXME: add message
 		public function datenAbspeichern() {
 			//var_dump($_POST);
 			global $wpdb, $plugintablename;
 			$dbname = $wpdb -> prefix . $plugintablename;
-			$wpdb->insert($dbname, $_POST);
+			$wpdb -> insert($dbname, $_POST);
 			//$wpdb->insert($dbname, array( 'game'=>'test1'));
-			echo'<br>speichere';
+			echo '<br>speichere';
 			echo $dbname;
-			
-			
+
+		}
+
+		private function showtable($dboutarray) {
+			$firstrun = TRUE;
+
+			echo '<table class="wp-list-table">';
+
+			foreach ($dboutarray as $key => $value) {
+				if ($firstrun) {
+					echo "<thead>";
+					foreach ($value as $key2 => $value2) {
+						echo "<th>$key2</th>";
+					}
+					echo "</thead> <tr>";
+				}
+				echo "<tr>";
+
+				foreach ($value as $key2 => $value2) {
+					echo "<th>$value2</th>";
+				}
+				echo "</tr>";
+
+				$firstrun = FALSE;
+			}
+
 		}
 
 		public function admininterface() {
 			global $wpdb, $plugintablename;
+			//$wptablevar = new GameplayFormClassTable;
+
+			//set tablename
 			$dbname = $wpdb -> prefix . $plugintablename;
-			$dboutput = $wpdb->get_results( 'SELECT * FROM '.$dbname, ARRAY_A);
+
+			//output database
+			$query = 'SELECT * FROM ' . $dbname;
+			$dboutput = $wpdb -> get_results($query, ARRAY_A);
+
 			echo '<div class="wrap">
 				<div>
 					<h1>Gameplayform</h1>
-					<p>DATABASE:';
-			var_dump($dboutput);
-			echo '</p></div>
-			</div><br>';
+					<p>Table:</p>';
+
+			//$wptablevar->showtable($dboutput);
+
+			$this -> showtable($dboutput);
+
+			echo "<br></div>
+			</div><br>";
 		}
 
 		private function createtable() {
@@ -90,16 +126,27 @@ if (!class_exists("GameplayFormClass")) {
 			add_option("gameplayformdb_version", $gameplayformdbversion);
 		}
 
-
-
 		public function installgpplugin() {
-			$this->createtable();
+			$this -> createtable();
 		}
 
 	}
 
 }
+/*
+ if (!class_exists("GameplayFormClassTable")) {
+ class GameplayFormClassTable extends WP_List_Table {
+ public function showtable($dboutarray) {
+ $this -> _column_headers = array($dboutarray, // columns
+ array(), // hidden
+ array(), // sortable
+ );
+ }
 
+ }
+
+ }
+ */
 $runvariable = new GameplayFormClass;
 
 //*********************************************************************
@@ -115,3 +162,4 @@ function addadmininterface() {
 add_shortcode('gameplayform', array('GameplayFormClass', 'doFrontendController'));
 add_action('admin_menu', 'addadmininterface');
 ?>
+
